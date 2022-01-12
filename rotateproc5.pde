@@ -90,7 +90,7 @@ void generate_rotations() {
 }
 
 PGraphics generate_mask(int size){
-  return generate_mask(size, 0);
+  return generate_mask(size, 3);
 }
   
 PGraphics generate_mask(int size, int cropsize){
@@ -101,7 +101,7 @@ PGraphics generate_mask(int size, int cropsize){
   pg.stroke(255);
   pg.strokeWeight(0);
   pg.ellipseMode(CENTER);
-  pg.ellipse(size/2,size/2,size-cropsize,size-cropsize);
+  pg.ellipse(float(size)/2,float(size)/2,size-cropsize,size-cropsize);
   pg.endDraw();
   
   PGraphics pm = createGraphics(size,size);
@@ -132,7 +132,7 @@ class ExportRotations extends Thread {
     this.inputfile=inputfile; //filenames[current_image]
     this.inputImage = inputImage;
     System.out.println(crop_ratio);
-    this.outputsize = int(outputsize*(1.0-crop_ratio))/2*2;//outputsize;//
+    this.outputsize = int(ceil(outputsize*(1.0-crop_ratio))/2)*2;//outputsize;//
     this.centerx=centerx;
     this.centery=centery;
     this.rotations=rotations;
